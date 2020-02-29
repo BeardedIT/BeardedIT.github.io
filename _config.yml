@@ -13,6 +13,7 @@ baseurl:          /
 plugins: [jekyll-paginate]
 port: 8766
 live-reload: true
+url: http://BeardedIT.github.io
 
 author:
   name:           'Karl Engen'
