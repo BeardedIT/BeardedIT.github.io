@@ -1,2 +1,27 @@
-name: Hank Quinlan, Horrible Cop
-markdown: kramdown
+# Dependencies
+markdown:         kramdown
+highlighter:      rouge
+
+# Permalinks
+permalink:        pretty
+
+# Setup
+title:            Karl Engen
+tagline:          ''
+description:      'My Musings and Projects'
+baseurl:          /
+plugins: [jekyll-paginate]
+port: 8766
+live-reload: true
+
+author:
+  name:           'Karl Engen'
+  url:            https://twitter.com/karl.engen
+
+paginate:         5
+
+# Custom vars
+version:          2.1.0
+
+github:
+  repo:           https://github.com/poole/hyde

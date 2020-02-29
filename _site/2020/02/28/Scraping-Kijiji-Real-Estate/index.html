@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+  <head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Scraping Kijiji Real Estate &middot; Karl Engen
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/hyde.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-144-precomposed.png">
+                                 <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+</head>
+
+
+  <body>
+
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <img src="https://pbs.twimg.com/profile_images/454028653219704832/1pADmEst_400x400.jpeg" alt="used with permission http://philrood.com/">
+      <h1>
+        <a href="/">
+          Karl Engen
+        </a>
+      </h1>
+      <p class="lead">My Musings and Projects</p>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="sidebar-nav-item" href="/">Home</a>
+
+      
+
+      
+      
+        
+          
+        
+      
+        
+      
+        
+          
+        
+      
+
+      <a class="sidebar-nav-item" href="http://github.com/BeardedIT">GitHub</a>
+      <span class="sidebar-nav-item">Currently v2.1.0</span>
+    </nav>
+
+    <p>&copy; 2020. All rights reserved. </p>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">Scraping Kijiji Real Estate</h1>
+  <span class="post-date">28 Feb 2020</span>
+  <p>I was wanting to move out of the place that I was in and as such needed to find a new place to live. Rather than spending a bunch of time looking through posts I thought “Why can’t I have my computer find them and send them to me.”</p>
+
+<h2 id="the-setup">The Setup</h2>
+
+<p>First I needed to get the posts. I tried several different ideas before settling on the rss feed that Kijiji provides. This seemed to be the easiest way to get the information that I wanted. It also seemed like it might be less intrusive to kijiji’s servers.</p>
+
+<h2 id="the-requirements">The Requirements</h2>
+<ol>
+  <li><strong>It must be simple.</strong> No messing around with databases or complex algorithms.</li>
+  <li><strong>It must be portable.</strong> Aside from the python packages it relies on, it must be able to be moved to another computer with minimal fuss.</li>
+  <li><strong>It must notify me.</strong> I wanted something that would notify me wherever I was, at any time of the day or night.</li>
+  <li><strong>It must be low overhead</strong></li>
+</ol>
+
+<h2 id="building-it">Building it</h2>
+
+<p>The first challenge I met was how to get the data that I wanted. At minimum I wanted to get the url of the post so I could look at it, but it would also be nice to get the title of the post as this is typically the address. Originally I was going to scraped the actual results page on kijiji and while this would have worked I ended up using the rss feed of the results page.</p>
+
+<p>The main advantage of this is that there is less overhead. This causes less of a load on both the computer running the script and the server to which it is connected.</p>
+
+<p>To begin writing the code, I first imported the packages that I would use.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">feedparser</span> <span class="c1">#for parsing the rss feed
+</span><span class="kn">import</span> <span class="nn">os</span><span class="p">,</span> <span class="n">shutil</span><span class="p">,</span> <span class="n">re</span> <span class="c1"># for logging and searching the posts
+</span><span class="kn">from</span> <span class="nn">simplepush</span> <span class="kn">import</span> <span class="n">send</span> <span class="c1"># for notifications
+</span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span> <span class="c1"># for logging</span></code></pre></figure>
+
+<p>At the bottom each results page, there is an rss feed link. It was this that I used to get the individual posts.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">urls</span><span class="o">=</span><span class="p">(</span><span class="s">"https://www.kijiji.ca/rss-srp-for-rent/swift-current/c30349001l1700093"</span><span class="p">,</span><span class="s">"https://www.kijiji.ca/rss-srp-real-estate/swift-current/c34l1700093"</span><span class="p">)</span>
+<span class="n">now</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="n">now</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">"</span><span class="si">%</span><span class="s">d/</span><span class="si">%</span><span class="s">m/</span><span class="si">%</span><span class="s">Y </span><span class="si">%</span><span class="s">H:</span><span class="si">%</span><span class="s">M:</span><span class="si">%</span><span class="s">S"</span><span class="p">)</span> <span class="o">+</span><span class="s">'--- Kijiji_Shaunavon.py'</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">url</span> <span class="ow">in</span> <span class="n">urls</span><span class="p">:</span> <span class="c1"># loop through urls in variable url
+</span>    <span class="n">NewsFeed</span> <span class="o">=</span> <span class="n">feedparser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="c1"># parse url as rss</span></code></pre></figure>
+
+<p>The next step was to search the resulting posts for the two towns that I was potentially looking for housing in. I used both upper and lowercase search terms to help ensure that potential housing did not slip through.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"> <span class="k">for</span> <span class="n">post</span> <span class="ow">in</span> <span class="n">NewsFeed</span><span class="o">.</span><span class="n">entries</span><span class="p">:</span>
+         <span class="n">match</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">r".+\bShaunavon\b.+"</span> <span class="ow">or</span> <span class="s">r".+\bshaunavon\b.+"</span><span class="p">,</span><span class="n">post</span><span class="o">.</span><span class="n">title</span> <span class="ow">or</span> <span class="n">post</span><span class="o">.</span><span class="n">summary</span><span class="p">)</span> <span class="ow">or</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">r".+\bGull Lake\b.+"</span><span class="ow">or</span> <span class="s">r".+\bgull lake\b.+"</span><span class="p">,</span><span class="n">post</span><span class="o">.</span><span class="n">title</span> <span class="ow">or</span> <span class="n">post</span><span class="o">.</span><span class="n">summary</span><span class="p">)</span>
+ </code></pre></figure>
+
+<p>If the post matched the search terms then it was deemed to be a post that I would want to see.</p>
+
+<p>There would be potential to search for certain price ranges or other metadata, but I decided to just get all posts that were in my area. If someone was to do this in a larger center I could see them wanting to further restrict the results, but in my area it averages only a few posts a day.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python">  <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
+    <span class="nb">id</span><span class="o">=</span><span class="n">post</span><span class="o">.</span><span class="nb">id</span> <span class="c1"># set the url of post to variable
+</span>    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">'/home/karl/Scheduled Tasks/Daily/Log/Kijiji_Shaunavon_posts.log'</span><span class="p">,</span> <span class="s">'a+'</span><span class="p">)</span> <span class="k">as</span> <span class="n">notified</span><span class="p">:</span> <span class="c1"># open text file of previous results
+</span>        <span class="n">cont</span><span class="o">=</span><span class="p">[]</span>
+        <span class="n">contents</span><span class="o">=</span><span class="n">notified</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span> <span class="c1"># read contents of text file to memory
+</span>        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">contents</span><span class="p">:</span>
+          <span class="n">line</span><span class="o">=</span><span class="n">line</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span>
+          <span class="n">contents</span><span class="o">=</span><span class="n">cont</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+  </code></pre></figure>
+
+<p>The contents of the log of previous posts was then compared to that of the id of the post. If the id was not found to be in the text file, the post was new and was sent to me.</p>
+
+<p>Otherwise the post had already been sent and was subsequently ignored.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python">                <span class="k">if</span> <span class="nb">id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">cont</span><span class="p">:</span> <span class="c1"># if post is not in text file, notify me
+</span>                    <span class="k">print</span><span class="p">(</span><span class="n">line</span><span class="o">+</span><span class="s">'--&gt;'</span><span class="o">+</span><span class="nb">id</span><span class="p">)</span>
+                    <span class="n">send</span><span class="p">(</span><span class="s">"xJ4jv4"</span><span class="p">,</span> <span class="n">post</span><span class="o">.</span><span class="n">title</span><span class="p">,</span> <span class="n">post</span><span class="o">.</span><span class="n">link</span><span class="p">,</span> <span class="s">"Real Estate"</span><span class="p">)</span>
+                    <span class="n">notified</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">post</span><span class="o">.</span><span class="nb">id</span><span class="o">+</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">)</span>
+                    <span class="k">print</span><span class="p">(</span><span class="s">'New Post! - '</span><span class="o">+</span><span class="n">post</span><span class="o">.</span><span class="nb">id</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span> <span class="c1"># if post is in text file, ignore post
+</span>                    <span class="k">pass</span></code></pre></figure>
+
+<p>All together the code for this project is as follows:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python">  <span class="kn">import</span> <span class="nn">feedparser</span>
+  <span class="kn">import</span> <span class="nn">os</span><span class="p">,</span> <span class="n">shutil</span><span class="p">,</span> <span class="n">re</span>
+  <span class="kn">from</span> <span class="nn">simplepush</span> <span class="kn">import</span> <span class="n">send</span>
+  <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+  <span class="n">urls</span><span class="o">=</span><span class="p">(</span><span class="s">"https://www.kijiji.ca/rss-srp-for-rent/swift-current/c30349001l1700093"</span><span class="p">,</span><span class="s">"https://www.kijiji.ca/rss-srp-real-estate/swift-current/c34l1700093"</span><span class="p">)</span>
+  <span class="n">now</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">now</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">"</span><span class="si">%</span><span class="s">d/</span><span class="si">%</span><span class="s">m/</span><span class="si">%</span><span class="s">Y </span><span class="si">%</span><span class="s">H:</span><span class="si">%</span><span class="s">M:</span><span class="si">%</span><span class="s">S"</span><span class="p">)</span> <span class="o">+</span><span class="s">'--- Kijiji_Shaunavon.py'</span><span class="p">)</span>
+  <span class="k">for</span> <span class="n">url</span> <span class="ow">in</span> <span class="n">urls</span><span class="p">:</span>
+      <span class="n">NewsFeed</span> <span class="o">=</span> <span class="n">feedparser</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+      <span class="k">for</span> <span class="n">post</span> <span class="ow">in</span> <span class="n">NewsFeed</span><span class="o">.</span><span class="n">entries</span><span class="p">:</span>
+          <span class="n">match</span><span class="o">=</span><span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">r".+\bShaunavon\b.+"</span> <span class="ow">or</span> <span class="s">r".+\bshaunavon\b.+"</span><span class="p">,</span><span class="n">post</span><span class="o">.</span><span class="n">title</span> <span class="ow">or</span> <span class="n">post</span><span class="o">.</span><span class="n">summary</span><span class="p">)</span> <span class="ow">or</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s">r".+\bGull Lake\b.+"</span><span class="ow">or</span> <span class="s">r".+\bgull lake\b.+"</span><span class="p">,</span><span class="n">post</span><span class="o">.</span><span class="n">title</span> <span class="ow">or</span> <span class="n">post</span><span class="o">.</span><span class="n">summary</span><span class="p">)</span>
+          <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
+              <span class="nb">id</span><span class="o">=</span><span class="n">post</span><span class="o">.</span><span class="nb">id</span>
+              <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s">'/home/karl/Scheduled Tasks/Daily/Log/Kijiji_Shaunavon_posts.log'</span><span class="p">,</span> <span class="s">'a+'</span><span class="p">)</span> <span class="k">as</span> <span class="n">notified</span><span class="p">:</span>
+                  <span class="n">cont</span><span class="o">=</span><span class="p">[]</span>
+                  <span class="n">contents</span><span class="o">=</span><span class="n">notified</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+                  <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">contents</span><span class="p">:</span>
+                      <span class="n">line</span><span class="o">=</span><span class="n">line</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span>
+                      <span class="n">contents</span><span class="o">=</span><span class="n">cont</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+                  <span class="k">if</span> <span class="nb">id</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">cont</span><span class="p">:</span> <span class="c1">#
+</span>                      <span class="k">print</span><span class="p">(</span><span class="n">line</span><span class="o">+</span><span class="s">'--&gt;'</span><span class="o">+</span><span class="nb">id</span><span class="p">)</span>
+                      <span class="n">send</span><span class="p">(</span><span class="s">"xJ4jv4"</span><span class="p">,</span> <span class="n">post</span><span class="o">.</span><span class="n">title</span><span class="p">,</span> <span class="n">post</span><span class="o">.</span><span class="n">link</span><span class="p">,</span> <span class="s">"Real Estate"</span><span class="p">)</span>
+                      <span class="n">notified</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">post</span><span class="o">.</span><span class="nb">id</span><span class="o">+</span><span class="s">'</span><span class="se">\n</span><span class="s">'</span><span class="p">)</span>
+                      <span class="k">print</span><span class="p">(</span><span class="s">'New Post! - '</span><span class="o">+</span><span class="n">post</span><span class="o">.</span><span class="nb">id</span><span class="p">)</span>
+                  <span class="k">else</span><span class="p">:</span>
+                      <span class="k">pass</span></code></pre></figure>
+
+<h2 id="scheduling">Scheduling</h2>
+
+<p>Now that the code was written I needed a way to run it on a schedule. For this I chose a cronjob. To make it easier to run I wrote a small shell script that would run the python script.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c">#!/bin/bash</span>
+
+<span class="nb">cd</span> /home/karl/<span class="s1">'Scheduled Tasks'</span>/Daily
+python Kijiji_Shaunavon.py
+<span class="nv">dt</span><span class="o">=</span><span class="si">$(</span><span class="nb">date</span> <span class="s1">'+%d/%m/%Y %H:%M:%S'</span><span class="si">)</span><span class="p">;</span>
+<span class="nb">echo</span> <span class="s2">"</span><span class="nv">$dt</span><span class="s2"> --- run_Shaunavon.sh ran successfully"</span></code></pre></figure>
+
+<p>The most important thing that I found with cron is that the logging is pretty atrocious and the script can fail to run and there is no record of what went wrong. For this reason I piped the whole line into a text file called cron.log. In here I am able to get all the output of the cronjob.</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>*/15 * * * * /home/karl/'Scheduled Tasks'/Daily/run_Shaunavon.sh &gt;&gt; /home/karl/'Scheduled Tasks'/Daily/cron.log 2&gt;&amp;1
+</code></pre></div></div>
+<h2 id="outcome">Outcome</h2>
+
+<p>Since I wrote this bit of code it has been a great help. No longer do I have to spend time checking for new posts. While the time saved is small I do like the fact that the posts are sent to me automatically. The advantage to this is that I get them more promptly, since it isn’t waiting until I have a chance to check them. As an added bonus it is a fun conversation piece.</p>
+
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+  </ul>
+</div>
+
+    </div>
+
+  </body>
+</html>
