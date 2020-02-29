@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
  <title>Karl Engen</title>
- <link href="http://BeardedIT.github.io/atom.xml" rel="self"/>
- <link href="http://BeardedIT.github.io/"/>
- <updated>2020-02-28T22:39:41-06:00</updated>
- <id>http://BeardedIT.github.io</id>
+ <link href="http://localhost:8766/atom.xml" rel="self"/>
+ <link href="http://localhost:8766/"/>
+ <updated>2020-02-28T23:08:40-06:00</updated>
+ <id>http://localhost:8766</id>
  <author>
    <name>Karl Engen</name>
    <email></email>
@@ -14,9 +14,9 @@
  
  <entry>
    <title>Scraping Kijiji Real Estate</title>
-   <link href="http://BeardedIT.github.io/2020/02/28/Scraping-Kijiji-Real-Estate/"/>
+   <link href="http://localhost:8766/2020/02/28/Scraping-Kijiji-Real-Estate/"/>
    <updated>2020-02-28T00:00:00-06:00</updated>
-   <id>http://BeardedIT.github.io/2020/02/28/Scraping-Kijiji-Real-Estate</id>
+   <id>http://localhost:8766/2020/02/28/Scraping-Kijiji-Real-Estate</id>
    <content type="html">&lt;p&gt;I was wanting to move out of the place that I was in and as such needed to find a new place to live. Rather than spending a bunch of time looking through posts I thought “Why can’t I have my computer find them and send them to me.”&lt;/p&gt;
 
 &lt;h2 id=&quot;the-setup&quot;&gt;The Setup&lt;/h2&gt;
