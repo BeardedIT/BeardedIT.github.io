@@ -8,8 +8,7 @@ permalink:        pretty
 # Setup
 title:            Karl Engen
 tagline:          ''
-description:      'My Musings and Projects'
-baseurl:          /
+description:      'My Musings and Projects'    
 plugins: [jekyll-paginate]
 port: 8766
 live-reload: true
