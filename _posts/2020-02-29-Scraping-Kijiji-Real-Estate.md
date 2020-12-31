@@ -96,7 +96,7 @@ All together the code for this project is as follows:
                       contents=cont.append(line)
                   if id not in cont: #
                       print(line+'-->'+id)
-                      send("xJ4jv4", post.title, post.link, "Real Estate")
+                      send("xxxxx", post.title, post.link, "Real Estate")
                       notified.write(post.id+'\n')
                       print('New Post! - '+post.id)
                   else:
