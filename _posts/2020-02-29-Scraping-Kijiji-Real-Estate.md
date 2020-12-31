@@ -122,4 +122,4 @@ The most important thing that I found with cron is that the logging is pretty at
   ```
 ## Outcome
 
-Since I wrote this bit of code it has been a great help. No longer do I have to spend time checking for new posts. While the time saved is small I do like the fact that the posts are sent to me automatically. The advantage to this is that I get them more promptly, since it isn't waiting until I have a chance to check them. As an added bonus it is a fun conversation piece.
+Since I wrote this bit of code it has been a great help. No longer do I have to spend time checking for new posts. While the time saved is small, but I like the fact that the posts are sent to me automatically. The advantage to this is that I get them more promptly, since it isn't waiting until I have a chance to check them. As an added bonus it is a fun conversation piece.
