@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
  <title>Karl Engen</title>
- <link href="/atom.xml" rel="self"/>
- <link href="/"/>
- <updated>2020-12-31T13:10:04-06:00</updated>
- <id></id>
+ <link href="http://localhost:8766/atom.xml" rel="self"/>
+ <link href="http://localhost:8766/"/>
+ <updated>2020-12-31T13:39:01-06:00</updated>
+ <id>http://localhost:8766</id>
  <author>
    <name>Karl Engen</name>
    <email></email>
@@ -14,9 +14,9 @@
  
  <entry>
    <title>Happy New Years</title>
-   <link href="/2020/12/31/Happy-New-Years/"/>
+   <link href="http://localhost:8766/2020/12/31/Happy-New-Years/"/>
    <updated>2020-12-31T00:00:00-06:00</updated>
-   <id>/2020/12/31/Happy-New-Years</id>
+   <id>http://localhost:8766/2020/12/31/Happy-New-Years</id>
    <content type="html">&lt;p&gt;Hey everyone its been a long time since I updated my blog. I just wanted to wish everyone a happy new years.&lt;/p&gt;
 
 &lt;p&gt;This year has been a crazy year but heres to a new year and new experiences.&lt;/p&gt;
@@ -25,9 +25,9 @@
  
  <entry>
    <title>Scraping Kijiji Real Estate</title>
-   <link href="/2020/02/28/Scraping-Kijiji-Real-Estate/"/>
+   <link href="http://localhost:8766/2020/02/28/Scraping-Kijiji-Real-Estate/"/>
    <updated>2020-02-28T00:00:00-06:00</updated>
-   <id>/2020/02/28/Scraping-Kijiji-Real-Estate</id>
+   <id>http://localhost:8766/2020/02/28/Scraping-Kijiji-Real-Estate</id>
    <content type="html">&lt;p&gt;I was wanting to move out of the place that I was in and as such needed to find a new place to live. Rather than spending a bunch of time looking through posts I thought “Why can’t I have my computer find them and send them to me.”&lt;/p&gt;
 
 &lt;h2 id=&quot;the-setup&quot;&gt;The Setup&lt;/h2&gt;
@@ -140,7 +140,7 @@ python Kijiji_Shaunavon.py
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;h2 id=&quot;outcome&quot;&gt;Outcome&lt;/h2&gt;
 
-&lt;p&gt;Since I wrote this bit of code it has been a great help. No longer do I have to spend time checking for new posts. While the time saved is small I do like the fact that the posts are sent to me automatically. The advantage to this is that I get them more promptly, since it isn’t waiting until I have a chance to check them. As an added bonus it is a fun conversation piece.&lt;/p&gt;
+&lt;p&gt;Since I wrote this bit of code it has been a great help. No longer do I have to spend time checking for new posts. While the time saved is small, but I like the fact that the posts are sent to me automatically. The advantage to this is that I get them more promptly, since it isn’t waiting until I have a chance to check them. As an added bonus it is a fun conversation piece.&lt;/p&gt;
 </content>
  </entry>
  
