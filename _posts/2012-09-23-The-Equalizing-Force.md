@@ -1,0 +1,17 @@
+---
+layout: post
+title: The Equalizing Force
+date: '2012-09-23'
+author: Karl Engen
+tags:
+---
+
+I have been thinking lately about the power of the internet and the ways that people can become and do and say things that they would not usually do or say either from the web. It is an equalizing and possibly anonymous, if that is what the situation warrants, platform for voicing the opinion of the people and making known what is happening around the world.
+
+Take for instance the Arab Spring of 2010 and onward. In this situation social media such as Twitter, Facebook and especially YouTube were utilized to show the atrocities that were being committed in the Arab world. The web enabled the world to see through first hand accounts and live video streams, the violence and bloodshed that was happening in those areas of the world. This drew the world together and the voice of the Arabs became much larger when coupled with that of the rest of the world. The leaders of these countries involved in the unjust treatment realized the danger in allowing free and open access to the internet and thus began to censor the internet and even went as far as shutting down the internet in Egypt completely.
+
+This brought about another facet of the internet. The global village that has been a result of it. When the censorship of the internet was realized it did not take long for groups around the world to respond by designing and implementing methods of bypassing the restrictions -- methods such as Tor relays and other loopholes for accessing the internet. It even went as far as tweeting on behalf of someone who was unable to. The internet denizens took this threat to free speech and decided to do what they could to help the people who needed it.
+
+There have been other examples of this response to the censorship in the recent years. Another that comes to mind is that of the Stop Online Piracy Act and Protect IP Act (SOPA/PIPA) in the United States. Instead of just saying "My voice does not matter", hundreds of thousands if not millions of people rose up as one and said "Don't you dare threaten my internet and free speech." Some notable examples of this were the blackout of websites such as Wikipedia, the conversation on all sorts of different social media platforms, and the citizen advocacy including protests and lobbying. Not only did this happen in the USA, but there was uproar all over the world. Now not all of these were done through the internet, but the people who were against these laws found many more like minded people and found a strength in numbers and the courage to stand up and let their voices be heard. This united front shocked the US lawmakers and caused them to rethink their policy. This was huge victory for the people of the internet age. Through the use of the internet, which is by its very nature is anonymous, they were able to bring about real change, and to fight back against corruption.
+
+The internet also gives a voice and platform to bring the back-room dealings of governments and corporations into the light of day. This can be in the form of social media, blogs, or the ever-present WikiLeaks where people can upload files that show the corruption of these corporations. These are incredibly useful in the evening of the playing field so to speak and making the big boys accountable for their actions.
