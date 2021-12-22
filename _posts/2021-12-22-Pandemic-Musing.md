@@ -9,6 +9,8 @@ tags:
 - Reflection
 ---
 
+As 2020 draws to a close it brings to mind the events of the past two years and the lessons to be learned from it. In this post I want to examine this.
+
 ### Isolation and Social Distancing
 
 When it began, we were told "it is only for two weeks", "help flatten the curve" etc. Soon we were being told it wasn't enough; that people were dying and we needed to do more. For the first time in a long time, the western world with all its medicine was unsure about how to proceed with the threat of this novel and unknown coronavirus.  
