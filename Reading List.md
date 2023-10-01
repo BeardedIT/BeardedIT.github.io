@@ -6,6 +6,7 @@ title: Reading List
 **Reamde** - Neal Stephenson - ***2023-08-27***  
 **It's Not What You Think** - Jefferson Bethke - ***2023-08-05***  
 # What I've Read
+## 2023
 **Live No Lies** - John Mark Comer - ***2023-10-01***  
 **What the Dog Saw** - Malcolm Gladwell - ***2023-08-26***  
 **Digital Madness** - Nicholas Kardaras - ***2023-07-16***  
@@ -14,6 +15,7 @@ title: Reading List
 **The Tipping Point** - Malcolm Gladwell - ***2023-05-22***  
 **Deep Work** - Cal Newport - ***2023-05-14***  
 **Tesla** - W. Bernard Carlson - ***2023-05-12***  
+## 2022
 **Blackwater** - Jeremy Scahill - ***2022-12-25***  
 **Three Cups of Deceit** - Jon Krakauer - ***2022-06-25***  
 **Jesus and John Wayne How White Evangelicals Corrupted a Faith and Fractured a Nation** - Kristin Kobes Du Mez - ***2022-06-22***  
@@ -23,6 +25,7 @@ title: Reading List
 **Futureproof** - Kevin Roose - ***2022-01-15***  
 **The Ruthless Elimination of Hurry** - John Mark Comer - ***2022-01-04***  
 **Murder, Madness and Mayhem** - Mike Browne - ***2022-01-02***  
+## 2021 
 **Digital Minimalism** - Cal Newport - ***2021-12-31***  
 **Darknet** - Matthew Mather - ***2021-12-31***  
 **Ranger Games** - Ben Blum - ***2021-12-29***  
@@ -33,6 +36,7 @@ title: Reading List
 **Clean** - Douglas Weiss - ***2021-05-09***  
 **Single, Dating, Engaged, Married** - Ben Stuart - ***2021-05-08***  
 **Blink** - Malcolm Gladwell - ***2021-01-17***  
+## 2020
 **Talking to Strangers** - Malcolm Gladwell - ***2020-12-31***  
 **I Will Teach You to Be Rich** - Ramit Sethi - ***2020-12-01***  
 **The Sacred Search** - Gary Thomas - ***2020-10-02***  
@@ -45,17 +49,24 @@ title: Reading List
 **Play the Man** - Mark Batterson - ***2020-03-14***  
 **The Way of Men** - Jack Donovan - ***2020-03-03***  
 **Outliers** - Malcolm Gladwell - ***2020-02-26***  
+## 2019
 **It's Your Ship** - D. Michael Abrashoff - ***2019-10-03***  
 **The Time Machine** - H.G. Wells - ***2019-10-03***  
+## 2018 
 **The Gift of Fear** - Gavin de Becker - ***2018/06/12***  
 **Three Men in a Boat (Three Men,** - Jerome K. Jerome - ***2018/06/12***  
 **The Stranger in the Woods** - Michael Finkel - ***2018-04-02***  
+## 2017
 **Tolkien and the Great War** - John Garth - ***2017-08-15***  
+## 2015
 **Freedom from Tyranny of the Urgent** - Charles E. Hummel - ***2015-05-30***  
+## 2012
 **The Bride Collector** - Ted Dekker - ***2012/05/29***  
 **Deception** - Randy Alcorn - ***2012-07-16***  
 **Monster** - Frank E. Peretti - ***2012-07-16***  
+## 2011
 **Romeo and Juliet** - William Shakespeare - ***2011/09/29***  
+## Unknown Date
 **Renegade (The Lost Books,** - Ted Dekker - ***unknown***  
 **Three** - Ted Dekker - ***unknown***  
 **Infidel (The Lost Books,** - Ted Dekker - ***unknown***  
